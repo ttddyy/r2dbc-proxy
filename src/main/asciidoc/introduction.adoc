@@ -1,0 +1,162 @@
+[[introduction]]
+= Introduction
+
+R2DBC Proxy is a proxy framework providing callbacks for query executions,
+method invocations, and parameter bindings.
+
+The proxy holds proxy listeners, which receive callbacks.
+When a caller(application or upper layer library) interacts with the proxy, the registered
+proxy listeners receive callbacks with contextual information.
+
+Typical usages of proxy listeners are followings:
+
+- Logging on each query
+- Detect slow queries
+- Method tracing
+- Metrics
+- Distributed tracing
+- Assertion and verification
+- Own action
+
+The proxy is a thin layer which suits to implement cross-cutting concerns, agnostic to
+the underlying implementation such as drivers; yet, it is viewed as R2DBC SPI from above layer.
+
+TODO: add diagram
+
+
+
+The proxy listeners can perform:
+
+
+
+Callbacks are implemented as listeners.
+When a method is invoked on a proxy, corresponding callback method gets triggered.
+Contextual information is passed as a method argument.
+
+When a method is invoked on a proxy, corresponding callback method gets triggered with
+an argument that holds contextual information.
+
+
+When upper layer interacts on a proxy, corresponding listener method gets triggered.
+
+
+The proxy listener receives callback.
+
+The proxy triggers callbacks on registered proxy listeners.
+The callback passes contextual information as its method argument.
+
+When callback happened, corresponding listener method receives contextual information
+
+
+
+
+with a parameter which
+holds contextual information.
+
+
+a parameter
+that contains contextual information.
+By using contextual information, listeners can perform, for example, logging on each query execution, detect slow queries,
+method tracing, observability - metrics and distributed tracing, assertion/verification, and own logic.
+
+Callbacks are implemented as listeners.
+When a method is invoked on a proxy, corresponding callback method on the listeners get triggered with a parameter
+that contains contextual information.
+By using contextual information, listeners can perform, for example, logging on each query execution, detect slow queries,
+method tracing, observability - metrics and distributed tracing, assertion/verification, etc.
+
+Proxy is a thin transparent layer.
+From above layer, proxies are viewed as simply R2DBC SPI objects.
+This is similar to how connection pooling is viewed from upper layer.
+
+
+[[introduction_project-metadata]]
+== Project Metadata
+
+* Version control: https://github.com/r2dbc/r2dbc-proxy
+* Issue tracker: https://github.com/r2dbc/r2dbc-proxy/issues
+* Release repository: https://repo1.maven.org/maven2
+* Snapshot repository: https://oss.sonatype.org/content/repositories/snapshots
+
+//
+//
+//
+//
+//
+//Callbacks are implemented as listeners.
+//At the time of invocation, contextual information is passed on each callback.
+//
+//
+//
+//
+//
+//When callback happens, contextual information is passed on to the listener method.
+//
+//
+//
+//At the time of invocation, callbacks, implemented as a listener, receives contextual information.
+//
+//
+//is passed on each callback on a listener.
+//
+//
+//
+//
+//
+//
+//
+//From application point of view, proxies are simply transparent to R2DBC SPI objects.
+//
+//Callbacks are implemented as listeners.
+//At the time of invocation, contextual information is passed on each callback.
+//
+//Using contextual information, listeners can be implemented
+//
+//By using contextual information, listeners can perform, for example, logging on each query execution, detect slow queries,
+//method tracing, observability - metrics and distributed tracing, assertion/verification, etc.
+//
+//
+//
+//
+//
+//Listener can achive various things with contextual information
+//
+//
+//Based on the callback and contextual information, various listener can be implemented.
+//For example, a listener can perform logging on each query execution, detect slow queries, method tracing,
+//observability - metrics and distributed tracing, or query/method assertion/verification, etc.
+//
+//
+//at the time of invocation.
+//
+//The proxy can provide
+//
+//built on top of R2DBC SPI objects.
+//
+//
+//
+//
+//
+//
+//driver or any other R2DBC libraries
+//
+//
+//
+//The listener interfaces defines
+//Each callback
+//contextual information
+//
+//callbacks are implemented as listeners and receives callbacks with contextual information - query or invoked method contexts.
+
+//
+//== Usage
+//
+//
+//observability - metrics and distributed tracing,
+//
+//
+//
+//instrumentation for observability - metrics and distributed tracing.
+//
+//
+//
